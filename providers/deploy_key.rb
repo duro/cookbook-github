@@ -8,6 +8,8 @@ action :create do
     not_if { ::File.exists?(path_to_key)}
   end
 
+  ssh_known_hosts_entry 'github.com'
+
   ruby_block "upload_key_to_github" do
     block do
 
