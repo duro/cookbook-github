@@ -4,6 +4,7 @@ action :create do
   execute "generate deploy user keypair" do
     command "ssh-keygen -t rsa -N '' -C '#{new_resource.email}' -f #{path_to_key}"
     user new_resource.deploy_user
+    group new_resource.deploy_user
     not_if { ::File.exists?(path_to_key)}
   end
 
